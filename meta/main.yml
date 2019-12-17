@@ -1,7 +1,7 @@
 ---
 # roles/ansible-nagios-role/meta/main.yml
 
-dependencies:
+#dependencies:
 
 #  - role: cjsteel.resources
 #    resources_on_local : '{{ ansible-nagios-role_resources_on_local }}'
