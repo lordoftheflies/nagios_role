@@ -1,0 +1,17 @@
+---
+
+- name: "Download nagios core"
+  get_url:
+    url: "https://assets.nagios.com/downloads/nagioscore/releases/nagios-{{nagios.version}}.tar.gz"
+    dest: "nagios-{{nagios.version}}.tar.gz"
+  tags:
+    - nagios
+    - download
+
+- name: "Extract nagios core"
+  unarchive:
+    src: "nagios-{{nagios.version}}.tar.gz"
+    dest: .
+  tags:
+    - nagios
+    - extract

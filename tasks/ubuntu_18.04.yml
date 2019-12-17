@@ -1,0 +1,51 @@
+---
+# roles/ansible-nagios-role/tasks/ubuntu_18.04.yml
+
+- debug:
+    msg:
+      - "Ubuntu 18.04 not supported at this time"
+      - "System {{ inventory_hostname }} not configured"
+
+- name: "Install dependencies"
+  become: yes
+  package:
+    name: "{{item}}"
+    state: present
+  loop:
+    - autoconf
+    - gcc
+    - make
+    - unzip
+    - libgd-dev
+    - libmcrypt-dev
+    - libssl-dev
+    - dc
+    - snmp
+    - libnet-snmp-perl
+    - gettext
+  tags:
+    - nagios
+    - linux-packages
+
+
+- name: "Fetch nagios-core ..."
+  include: fetch-nagios.yml
+
+- name: "Fetch nagios-plugins ..."
+  include: fetch-nagios-plugins.yml
+
+- name: "Fetch nagios-npre ..."
+  include: fetch-nagios-npre.yml
+
+- name: "Build nagios-core ..."
+  include: build-nagios.yml
+
+- name: "Build nagios plugins ..."
+  include: build-nagios-plugins.yml
+
+- name: "Build nagios-npre ..."
+  include: build-nagios-npre.yml
+
+- name: "Audit and fix initial access and auth"
+  include: audit-access.yml
+

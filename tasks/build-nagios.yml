@@ -1,0 +1,69 @@
+---
+- name: "Configure build"
+  shell: ./configure --with-httpd-conf=/etc/apache2/sites-enabled
+  args:
+    chdir: "nagios-{{nagios.version}}"
+  tags:
+    - nagios
+    - configure
+
+- name: "Make all"
+  become: yes
+  shell: make all
+  args:
+    chdir: "nagios-{{nagios.version}}"
+  tags:
+    - nagios
+    - make
+
+- name: "Make users and groups"
+  shell: make install-groups-users
+  args:
+    chdir: "nagios-{{nagios.version}}"
+  tags:
+    - nagios
+    - accounts
+    - make
+
+- name: "Make install"
+  shell: make install
+  args:
+    chdir: "nagios-{{nagios.version}}"
+  tags:
+    - nagios
+    - make
+
+- name: "Make daemoninit"
+  shell: make install-daemoninit
+  args:
+    chdir: "nagios-{{nagios.version}}"
+  tags:
+    - nagios
+    - daemon
+    - make
+
+- name: "Make commandmode"
+  shell: make install-commandmode
+  args:
+    chdir: "nagios-{{nagios.version}}"
+  tags:
+    - nagios
+    - commands
+    - make
+
+- name: "Make config"
+  shell: make install-config
+  args:
+    chdir: "nagios-{{nagios.version}}"
+  tags:
+    - nagios
+    - configuration
+    - make
+
+- name: "Make webconf"
+  shell: make install-webconf
+  args:
+    chdir: "nagios-{{nagios.version}}"
+  tags:
+    - nagios
+    - apache-conf

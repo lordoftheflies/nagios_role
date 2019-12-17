@@ -1,0 +1,6 @@
+--- # ansible-nagios-role/tests/travis_test.yml
+
+- hosts: localhost
+  become: true
+  roles:
+    - ansible-nagios-role

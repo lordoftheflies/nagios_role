@@ -1,0 +1,9 @@
+---
+- name: Converge
+  hosts: all
+  vars:
+    - ansible-nagios-role_deployment_users_home: /root
+    - ansible-nagios-role_testing_provider: lxd
+
+  roles:
+    - ansible-nagios-role

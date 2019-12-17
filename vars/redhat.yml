@@ -1,0 +1,4 @@
+---
+# roles/ansible-nagios-role/vars/debian.yml
+
+ansible-nagios-role_package_extension: 'rpm'

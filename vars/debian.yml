@@ -1,0 +1,5 @@
+---
+# roles/ansible-nagios-role/vars/debian.yml
+
+# Debian specific vars
+ansible-nagios-role_package_extension: 'deb'

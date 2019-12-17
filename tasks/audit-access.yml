@@ -1,0 +1,50 @@
+# Add a user to a password file suitable for use by libpam-pwdfile
+- name: "Check admin user login"
+  become: yes
+  htpasswd:
+    path: /etc/nagios3/htpasswd.users
+    name: nagiosadmin
+    state: present
+    password: Armageddon0
+  #    password: oedu2eGh
+  #    crypt_scheme: md5_crypt
+  tags:
+    - nagios
+    - access
+
+- name: "Check operator user login"
+  become: yes
+  htpasswd:
+    path: /etc/nagios3/htpasswd.users
+    name: lordoftheflies
+    state: present
+    password: Armageddon0
+  #    password: oedu2eGh
+  #    crypt_scheme: md5_crypt
+  tags:
+    - nagios
+    - access
+
+
+- name: "Add nagios user group"
+  group:
+    name: nagios
+    state: present
+  tags:
+    - nagios
+    - group
+
+- name: "Add nagios user and group"
+  user:
+    name: nagios
+    shell: /bin/bash
+    comment: Nagios Service Account
+    group: nagios
+    state: present
+    generate_ssh_key: yes
+    ssh_key_bits: 2048
+    ssh_key_file: .ssh/id_rsa
+    groups: docker,www-data,oracle
+  tags:
+    - nagios
+    - user

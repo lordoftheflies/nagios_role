@@ -1,0 +1,28 @@
+---
+
+- name: "Add Rewrite module"
+  become: yes
+  apache2_module:
+    state: present
+    name: rewrite
+  tags:
+    - nagios
+    - apache-module
+
+- name: "Add CGI module"
+  become: yes
+  apache2_module:
+    state: present
+    name: cgi
+  tags:
+    - nagios
+    - apache-module
+
+- name: "Restart service apache, in all cases"
+  service:
+    name: apache2
+    state: restarted
+  tags:
+    - nagios
+    - apache
+

@@ -1,0 +1,17 @@
+---
+
+- name: "Download nagios nrpe plugin"
+  get_url:
+    url: "https://github.com/NagiosEnterprises/nrpe/releases/tag/nrpe-{{nagios.nrpe.version}}"
+    dest: nagios-{{nagios.nrpe.version}}.tar.gz
+  tags:
+    - nagios-nrpe
+    - download
+
+- name: "Extract nagios nrpe plugin"
+  unarchive:
+    src: nagios-{{nagios.nrpe.version}}.tar.gz
+    dest: nagios-{{nagios.nrpe.version}}
+  tags:
+    - nagios-nrpe
+    - extract

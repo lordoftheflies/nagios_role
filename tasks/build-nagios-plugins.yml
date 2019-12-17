@@ -1,0 +1,26 @@
+---
+- name: "Configure plugins build"
+  shell: ./configure
+  args:
+    chdir: "nagios-{{nagios.plugins.version}}"
+  tags:
+    - nagios
+    - make
+    - plugins
+
+- name: "Make plugins"
+  shell: make
+  args:
+    chdir: "nagios-{{nagios.plugins.version}}"
+  tags:
+    - nagios-plugins
+    - make
+
+- name: "Make all"
+  shell: make all
+  become: yes
+  args:
+    chdir: "nagios-{{nagios.plugins.version}}"
+  tags:
+    - nagios-plugins
+    - make

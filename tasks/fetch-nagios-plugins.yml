@@ -1,0 +1,17 @@
+---
+
+- name: "Download nagios core plugins"
+  get_url:
+    url: "https://nagios-plugins.org/download/nagios-plugins-{{nagios.plugins.version}}.tar.gz"
+    dest: nagios-{{nagios.plugins.version}}.tar.gz
+  tags:
+    - nagios-plugins
+    - download
+
+- name: "Extract nagios core plugins"
+  unarchive:
+    src: nagios-{{nagios.plugins.version}}.tar.gz
+    dest: nagios-{{nagios.plugins.version}}
+  tags:
+    - nagios-plugins
+    - extract

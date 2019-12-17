@@ -1,0 +1,25 @@
+---
+- name: "Configure build of NRPE"
+  shell: ./configure
+  args:
+    chdir: "nagios-{{nagios.nrpe.version}}"
+  tags:
+    - nagios-nrpe
+    - configure
+
+- name: "Make NRPE"
+  shell: make check_nrpe
+  args:
+    chdir: "nagios-{{nagios.nrpe.version}}"
+  tags:
+    - nagios-nrpe
+    - make
+
+- name: "Install NRPE"
+  shell: make install-plugin
+  become: yes
+  args:
+    chdir: "nagios-{{nagios.nrpe.version}}"
+  tags:
+    - nagios-nrpe
+    - install
