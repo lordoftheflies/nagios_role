@@ -1,39 +1,14 @@
 ---
-# roles/ansible-nagios-role/meta/main.yml
-
-dependencies:
-
-#  - role: cjsteel.resources
-#    resources_on_local : '{{ ansible-nagios-role_resources_on_local }}'
-#    resources_on_remote: '{{ ansible-nagios-role_resources_on_remote }}'
-
-#  - role: acemenu
-
 galaxy_info:
   author: 'László Hegedűs'
-  description: 'ansible-nagios-role is used to install nagios core community edition'
+  description: 'Ansible-role is used to install Nagios Core Community Edition.'
   company: 'Cherubits'
   license: Apache-2.0
-  min_ansible_version: '1.7.1'
+  min_ansible_version: 2.9
   platforms:
-    - name: EL
-      versions:
-        - 5
-        - 6
-        - 7
     - name: Ubuntu
       versions:
-        - bionic
-        - precise
-        - trusty
-        - xenial
-    - name: Debian
-      versions:
-        - jessie
-        - squeeze
-        - stretch
-        - wheezy
-
+        - all
   galaxy_tags:
     - ansible
     - nagios
@@ -41,3 +16,4 @@ galaxy_info:
     - centos
     - debian
     - ubuntu
+dependencies: []
